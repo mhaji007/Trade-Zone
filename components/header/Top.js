@@ -10,6 +10,7 @@ import UserMenu from "./UserMenu";
 
 export default function Top() {
   const [loggedIn, setLoggedIn] = useState(true);
+  const [visible, setVisible] = useState(false);
   return (
     <div className={styles.top}>
       <div className={styles.top__container}>
@@ -37,7 +38,10 @@ export default function Top() {
           </li>
           {/* Wrapping the two list item inside another li
           allows for more flexiblity in styling the elements inside */}
-          <li>
+          <div
+            onMouseOver={() => setVisible(true)}
+            onMouseLeave={() => setVisible(false)}
+          >
             {loggedIn ? (
               <li className={styles.li}>
                 <div className={styles.flex}>
@@ -58,8 +62,8 @@ export default function Top() {
                 </div>
               </li>
             )}
-            <UserMenu loggedIn={loggedIn} />
-          </li>
+            {visible && <UserMenu loggedIn={loggedIn} />}
+          </div>
         </ul>
       </div>
     </div>
