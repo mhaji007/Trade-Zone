@@ -8,7 +8,7 @@ import Image from "next/image";
 import flag from "../../public/images/flag.png";
 import UserMenu from "./UserMenu";
 
-export default function Top() {
+export default function Top({country}) {
   const [loggedIn, setLoggedIn] = useState(true);
   const [visible, setVisible] = useState(false);
   return (
@@ -17,8 +17,8 @@ export default function Top() {
         <div></div>
         <ul className={styles.top__list}>
           <li className={styles.li}>
-            <Image src={flag} alt="Temp falg placeholder" />
-            <span>USA / USD</span>
+            <Image src={country.flag} alt="Temp falg placeholder" width="20" height="20" />
+            <span>{country.name} / USD</span>
           </li>
           <li className={styles.li}>
             <MdSecurity />
