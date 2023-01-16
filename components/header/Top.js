@@ -7,9 +7,10 @@ import Link from "next/link";
 import Image from "next/image";
 import flag from "../../public/images/flag.png";
 import UserMenu from "./UserMenu";
+import { useSession } from "next-auth/react";
 
-export default function Top({country}) {
-  const [loggedIn, setLoggedIn] = useState(true);
+export default function Top({ country }) {
+  const { data: session } = useSession();
   const [visible, setVisible] = useState(false);
   return (
     <div className={styles.top}>
@@ -17,7 +18,12 @@ export default function Top({country}) {
         <div></div>
         <ul className={styles.top__list}>
           <li className={styles.li}>
-            <Image src={country.flag} alt="Temp falg placeholder" width="20" height="20" />
+            <Image
+              src={country.flag}
+              alt="Temp falg placeholder"
+              width="20"
+              height="20"
+            />
             <span>{country.name} / USD</span>
           </li>
           <li className={styles.li}>
@@ -42,14 +48,11 @@ export default function Top({country}) {
             onMouseOver={() => setVisible(true)}
             onMouseLeave={() => setVisible(false)}
           >
-            {loggedIn ? (
+            {session ? (
               <li className={styles.li}>
                 <div className={styles.flex}>
-                  <img
-                    src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper.png"
-                    alt="temp avatar"
-                  />
-                  <span>Mehdi Hajikhani</span>
+                  <img src={session.user.image} alt="looged-in user image" />
+                  <span>{session.user.name}</span>
                   <RiArrowDropDownFill />
                 </div>
               </li>
@@ -62,7 +65,7 @@ export default function Top({country}) {
                 </div>
               </li>
             )}
-            {visible && <UserMenu loggedIn={loggedIn} />}
+            {visible && <UserMenu session={session} />}
           </div>
         </ul>
       </div>

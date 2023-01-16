@@ -31,6 +31,7 @@
 
     &__list {
         display: flex;
+        align-items: center;
         gap: 15px;
 
         .li {
@@ -169,6 +170,7 @@
             font-size: 14px;
             color: $blue-color;
             text-decoration: underline;
+            cursor: pointer;
           }
         }
       }
