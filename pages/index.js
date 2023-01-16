@@ -9,7 +9,7 @@ import { useSession, signIn, signOut } from "next-auth/react"
 const inter = Inter({ subsets: ["latin"] });
 export default function Home({ country }) {
   const { data: session } = useSession()
-  console.log(country);
+  console.log(session);
   return (
     <>
       <Header country={country} />
