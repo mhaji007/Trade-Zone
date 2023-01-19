@@ -20,7 +20,7 @@ export default function Top({ country }) {
           <li className={styles.li}>
             <Image
               src={country.flag}
-              alt="Temp falg placeholder"
+              alt="Temp flag placeholder"
               width="20"
               height="20"
             />
