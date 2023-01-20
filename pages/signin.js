@@ -3,6 +3,8 @@ import Footer from "../components/footer";
 import styles from "../styles/signin.module.scss";
 import { BiLeftArrowAlt } from "react-icons/bi";
 import Link from "next/link";
+import { Formik, Form } from "formik";
+import LoginInput from "../components/inputs/loginInput";
 
 export default function signin() {
   const country = {
@@ -20,8 +22,23 @@ export default function signin() {
               <BiLeftArrowAlt />
             </div>
             <span>
-              Come join the Zone! <Link href="/">Visit Store</Link>
+              Come join the Zone! <Link href="/">Visit store</Link>
             </span>
+          </div>
+          <div className={styles.login__form}>
+            <h1>Sign in</h1>
+            <p>Get access to tons of unique deals.</p>
+            <Formik>
+              {(form) => (
+                <Form method="post" action="/api/auth/signin/email">
+                  <LoginInput
+                    type="text"
+                    icon="email"
+                    placeholder="Email Address"
+                  />
+                </Form>
+              )}
+            </Formik>
           </div>
         </div>
       </div>
