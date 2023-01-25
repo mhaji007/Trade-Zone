@@ -24,7 +24,17 @@ const initialvalues = {
 
 export default function signin({ providers }) {
   const [user, setUser] = useState(initialvalues);
-  const { login_email, login_password } = user;
+  const {
+    login_email,
+    login_password,
+    name,
+    email,
+    password,
+    conf_password,
+    success,
+    error,
+    login_error,
+  } = user;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,6 +46,26 @@ export default function signin({ providers }) {
       .required("Email address is required.")
       .email("Please enter a valid email address."),
     login_password: Yup.string().required("Please enter a password"),
+  });
+
+  const registerValidation = Yup.object({
+    name: Yup.string()
+      .required("Name is required ?")
+      .min(2, "First name must be between 2 and 16 characters.")
+      .max(16, "First name must be between 2 and 16 characters.")
+      .matches(/^[aA-zZ]/, "Numbers and special characters are not allowed."),
+    email: Yup.string()
+      .required("Email is required.")
+      .email("Enter a valid email address."),
+    password: Yup.string()
+      .required(
+        "Enter a combination of at least six numbers, letters and punctuation marks(such as ! and &)."
+      )
+      .min(6, "Password must be at least 6 characters.")
+      .max(36, "Password cannot be more than 36 characters"),
+    conf_password: Yup.string()
+      .required("Confirm your password.")
+      .oneOf([Yup.ref("password")], "Passwords do not match."),
   });
 
   const country = {
@@ -58,7 +88,7 @@ export default function signin({ providers }) {
           </div>
           <div className={styles.login__form}>
             <h1>Sign in</h1>
-            <p>Get access to tons of unique deals.</p>
+            <p>Welcome back!</p>
             <Formik
               enableReinitialize
               initialValues={{
@@ -111,6 +141,63 @@ export default function signin({ providers }) {
                 })}
               </div>
             </div>
+          </div>
+        </div>
+        <div className={styles.login__container}>
+          <div className={styles.login__form}>
+            <h1>Sign up</h1>
+            <p>Get in the Zone for access to tons of unique deals!</p>
+            <Formik
+              enableReinitialize
+              initialValues={{
+                name,
+                email,
+                password,
+                conf_password,
+              }}
+              validationSchema={registerValidation}
+              onSubmit={() => {
+                signUpHandler();
+              }}
+            >
+              {(form) => (
+                <Form>
+                  <LoginInput
+                    type="text"
+                    name="name"
+                    icon="user"
+                    placeholder="Full Name"
+                    onChange={handleChange}
+                  />
+                  <LoginInput
+                    type="text"
+                    name="email"
+                    icon="email"
+                    placeholder="Email Address"
+                    onChange={handleChange}
+                  />
+                  <LoginInput
+                    type="password"
+                    name="password"
+                    icon="password"
+                    placeholder="Password"
+                    onChange={handleChange}
+                  />
+                  <LoginInput
+                    type="password"
+                    name="conf_password"
+                    icon="password"
+                    placeholder="Re-Type Password"
+                    onChange={handleChange}
+                  />
+                  <CircledIconBtn type="submit" text="Sign up" />
+                </Form>
+              )}
+            </Formik>
+            <div>
+              {success && <span className={styles.success}>{success}</span>}
+            </div>
+            <div>{error && <span className={styles.error}>{error}</span>}</div>
           </div>
         </div>
       </div>
