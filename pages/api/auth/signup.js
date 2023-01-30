@@ -1,7 +1,11 @@
 import nc from "next-connect";
-import { validateEmail } from "../../../utils/validation";
+import bcrypt from "bcrypt";
+import { validateEmail } from "../../../utils/validations";
 import db from "../../../utils/db";
+import User from "../../../models/User";
 import { createActivationToken } from "../../../utils/tokens";
+import { activateEmailTemplate } from "../../../emails/activateEmailTemplate";
+import { sendEmail } from "../../../utils/sendEmails";
 
 // brcypt is just a (one of many) algorithms to one-way hash a password. So it's generally used in a login mechanism; you hash the login password with bcrypt and then compare it to the already hashed password in your database.
 
