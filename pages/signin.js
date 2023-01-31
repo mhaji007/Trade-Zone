@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import styles from "../styles/signin.module.scss";
@@ -23,6 +24,7 @@ const initialvalues = {
 };
 
 export default function signin({ providers }) {
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(initialvalues);
   const {
     login_email,
@@ -68,6 +70,22 @@ export default function signin({ providers }) {
       .oneOf([Yup.ref("password")], "Passwords do not match."),
   });
 
+  const signUpHandler = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.post("/api/auth/signup", {
+        name,
+        email,
+        password,
+      });
+      setUser({ ...user, error: "", success: data.message });
+      setLoading(false);
+    } catch (error) {
+      console.log("error: " + error);
+      setLoading(false);
+      setUser({ ...user, success: "", error: error.response.data.message });
+    }
+  };
   const country = {
     name: "United States",
     flag: "https://en.wikipedia.org/wiki/Flag_of_the_United_States#/media/File:Flag_of_the_United_States.svg",

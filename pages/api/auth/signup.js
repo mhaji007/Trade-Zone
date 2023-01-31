@@ -25,6 +25,10 @@ handler.post(async (req, res) => {
     if (!validateEmail(email)) {
       return res.status(400).json({ message: "Invalid email." });
     }
+    const user = await User.findOne({ email });
+    if (user) {
+      return res.status(400).json({ message: "This email already exsits." });
+    }
     if (password.length < 6) {
       return res
         .status(400)
