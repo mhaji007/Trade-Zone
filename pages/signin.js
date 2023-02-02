@@ -10,6 +10,8 @@ import * as Yup from "yup";
 import LoginInput from "../components/inputs/loginInput";
 import CircledIconBtn from "../components/buttons/circledIconBtn";
 import { getProviders, signIn } from "next-auth/react";
+import DotLoaderSpinner from "../components/loaders/dotLoader";
+import Router from "next/router";
 
 const initialvalues = {
   login_email: "",
@@ -80,6 +82,9 @@ export default function signin({ providers }) {
       });
       setUser({ ...user, error: "", success: data.message });
       setLoading(false);
+      setTimeout(async () => {
+        Router.push("/");
+      }, 2000);
     } catch (error) {
       console.log("error: " + error);
       setLoading(false);
@@ -93,6 +98,7 @@ export default function signin({ providers }) {
 
   return (
     <>
+      {loading && <DotLoaderSpinner loading={loading} />}
       <Header country={country} />
       <div className={styles.login}>
         <div className={styles.login__container}>
