@@ -91,6 +91,23 @@ export default function signin({ providers }) {
       setUser({ ...user, success: "", error: error.response.data.message });
     }
   };
+  const signInHandler = async () => {
+    setLoading(true);
+    let options = {
+      redirect: false,
+      email: login_email,
+      password: login_password,
+    };
+    const res = await signIn("credentials", options);
+    setUser({ ...user, success: "", error: "" });
+    setLoading(false);
+    if (res?.error) {
+      setLoading(false);
+      setUser({ ...user, login_error: res?.error });
+    } else {
+      return Router.push(callbackUrl || "/");
+    }
+  };
   const country = {
     name: "United States",
     flag: "https://en.wikipedia.org/wiki/Flag_of_the_United_States#/media/File:Flag_of_the_United_States.svg",
@@ -120,6 +137,9 @@ export default function signin({ providers }) {
                 login_password,
               }}
               validationSchema={loginValidation}
+              onSubmit={() => {
+                signInHandler();
+              }}
             >
               {(form) => (
                 <Form method="post" action="/api/auth/signin/email">
@@ -138,6 +158,9 @@ export default function signin({ providers }) {
                     onChange={handleChange}
                   />
                   <CircledIconBtn type="submit" text="Sign in" />
+                  {login_error && (
+                    <span className={styles.error}>{login_error}</span>
+                  )}
                   <div className={styles.forgot}>
                     <Link href="/auth/forgot">Forgot password?</Link>
                   </div>
