@@ -28,6 +28,7 @@ export default NextAuth({
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
       },
+      // When signIn function is envoked this function will be called
       async authorize(credentials, req) {
         // You need to provide your own logic here that takes the credentials
         // submitted and returns either a object representing a user or value
@@ -89,6 +90,18 @@ export default NextAuth({
       allowDangerousEmailAccountLinking: true,
     }),
   ],
+  // Before returning session callbacks are called
+  callbacks: {
+    async session({ session, token }) {
+      let user = await User.findById(token.sub);
+      session.user.id = token.sub || user._id.toSting();
+      session.user.role = user.role || "user";
+      token.role = user.role || "user";
+      return session;
+    },
+  },
+  // Directs next-auth to use our custom signin page
+  // instead of the default that comes with the CredentialsProvider
   pages: {
     signIn: "/signin",
   },
@@ -107,5 +120,6 @@ const SignInUser = async ({ password, user }) => {
   if (!testPassword) {
     throw new Error("Email or password is wrong!");
   }
+  // Send user to the session
   return user;
 };
