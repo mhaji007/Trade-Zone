@@ -25,7 +25,7 @@ const initialvalues = {
   login_error: "",
 };
 
-export default function signin({ providers }) {
+export default function signin({ providers, callbackUrl, csrfToken }) {
   const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(initialvalues);
   const {
@@ -89,7 +89,7 @@ export default function signin({ providers }) {
           password: password,
         };
         const res = await signIn("credentials", options);
-        Router.push("/");
+        Router.push(callbackUrl || "/");
       }, 2000);
     } catch (error) {
       setLoading(false);
@@ -148,6 +148,11 @@ export default function signin({ providers }) {
             >
               {(form) => (
                 <Form method="post" action="/api/auth/signin/email">
+                  <input
+                    type="hidden"
+                    name="csrfToken"
+                    defaultValue={csrfToken}
+                  />
                   <LoginInput
                     type="text"
                     name="login_email"
@@ -259,10 +264,25 @@ export default function signin({ providers }) {
 }
 
 export async function getServerSideProps(context) {
+  const { req, query } = context;
+
+  const session = await getSession({ req });
+  const { callbackUrl } = query;
+
+  if (session) {
+    return {
+      redirect: {
+        destination: callbackUrl,
+      },
+    };
+  }
+  const csrfToken = await getCsrfToken(context);
   const providers = Object.values(await getProviders());
   return {
     props: {
       providers,
+      csrfToken,
+      callbackUrl,
     },
   };
 }

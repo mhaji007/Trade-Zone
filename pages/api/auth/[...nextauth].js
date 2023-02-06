@@ -93,6 +93,7 @@ export default NextAuth({
   // Before returning session callbacks are called
   callbacks: {
     async session({ session, token }) {
+      // sub is the id of the user in the database
       let user = await User.findById(token.sub);
       session.user.id = token.sub || user._id.toSting();
       session.user.role = user.role || "user";
