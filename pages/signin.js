@@ -9,7 +9,12 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import LoginInput from "../components/inputs/loginInput";
 import CircledIconBtn from "../components/buttons/circledIconBtn";
-import { getProviders, signIn } from "next-auth/react";
+import {
+  getCsrfToken,
+  getProviders,
+  getSession,
+  signIn,
+} from "next-auth/react";
 import DotLoaderSpinner from "../components/loaders/dotLoader";
 import Router from "next/router";
 

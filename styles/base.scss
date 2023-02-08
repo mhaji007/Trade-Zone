@@ -3,6 +3,7 @@ $grey-color: #f8f8f8;
 $purple-color: #9b5dc2;
 $light-error-color: #fd010169;
 $error-color: #ed4337;
+$success-color: #6cc070;
 $shadow-1: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
 .btn_primary {
@@ -35,4 +36,18 @@ $shadow-1: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.error {
+    padding: 10px;
+    color: $error-color;
+}
+
+.success {
+    padding: 10px;
+    color: $success-color;
 }
