@@ -131,12 +131,12 @@ export const resetEmailTemplate= (to, url) => {
     </tr>
     <tr style="border-collapse:collapse">
     <td align="center" style="Margin:0;padding-left:10px;padding-right:10px;padding-top:40px;padding-bottom:40px"><!--[if mso]><a href=${url} target="_blank" hidden>
-    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href="user__reset"
+    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" esdevVmlButton href=${url}
     style="height:46px; v-text-anchor:middle; width:176px" arcsize="22%" strokecolor="#666666" strokeweight="2px" fillcolor="#ffffff">
     <w:anchorlock></w:anchorlock>
     <center style='color:#333333; font-family:arial, "helvetica neue", helvetica, sans-serif; font-size:14px; font-weight:700; line-height:14px; mso-text-raise:1px'>RESET PASSWORD</center>
     </v:roundrect></a>
-    <![endif]--><!--[if !mso]><!-- --><span class="msohide es-button-border-1 es-button-border" style="border-style:solid;border-color:#666666;background:#ffffff;border-width:2px;display:inline-block;border-radius:10px;width:auto;mso-hide:all"><a href="user__reset" class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#333333;font-size:14px;border-style:solid;border-color:#FFFFFF;border-width:15px 20px 15px 20px;display:inline-block;background:#FFFFFF;border-radius:10px;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:bold;font-style:normal;line-height:17px;width:auto;text-align:center">RESET PASSWORD</a></span><!--<![endif]--></td>
+    <![endif]--><!--[if !mso]><!-- --><span class="msohide es-button-border-1 es-button-border" style="border-style:solid;border-color:#666666;background:#ffffff;border-width:2px;display:inline-block;border-radius:10px;width:auto;mso-hide:all"><a href=${url} class="es-button" target="_blank" style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#333333;font-size:14px;border-style:solid;border-color:#FFFFFF;border-width:15px 20px 15px 20px;display:inline-block;background:#FFFFFF;border-radius:10px;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-weight:bold;font-style:normal;line-height:17px;width:auto;text-align:center">RESET PASSWORD</a></span><!--<![endif]--></td>
     </tr>
     </table></td>
     </tr>
