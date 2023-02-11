@@ -42,6 +42,19 @@ function reset({ user_id }) {
         password: password,
       };
       await signIn("credentials", options);
+      // Router.push("/")
+      // The following in getServerSideProps accomplishes the same thing
+      // const session = await getSession({ req });
+      // if (session) {
+      //   return {
+      //     redirect: {
+      //       destination: "/",
+      //     },
+      //   };
+      // }
+      // window.location.reload(true) refreshes the whole page
+      // - i.e., reloads the page from the server, then we look for the session and redirect to the homepage
+      // but window.location.reload(false) reloads the page using the version of the page cached by the browser
       window.location.reload(true);
     } catch (error) {
       setLoading(false);
