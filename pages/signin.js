@@ -273,7 +273,8 @@ export async function getServerSideProps(context) {
 
   const session = await getSession({ req });
   const { callbackUrl } = query;
-
+  // Geenerate this page only if cookies are present in the session
+  // and afterwards redirect to callbackUrl (the page user originally was on before signing in)
   if (session) {
     return {
       redirect: {

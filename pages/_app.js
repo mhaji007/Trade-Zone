@@ -8,7 +8,10 @@ import { SessionProvider } from "next-auth/react";
 
 let persistor = persistStore(store);
 
-export default function App({ Component, pageProps: {session, ...pageProps} }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   return (
     <>
       <Head>
@@ -17,6 +20,8 @@ export default function App({ Component, pageProps: {session, ...pageProps} }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      {/* Session variable is going to create cookies and store
+       all your values inside the client application */}
       <SessionProvider session={session}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
