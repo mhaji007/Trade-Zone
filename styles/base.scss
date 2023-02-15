@@ -57,3 +57,69 @@ $shadow-1: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     padding: 10px;
     color: $success-color;
 }
+
+//-------------Swipers------
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mainSwiper {
+    .swiper-slide img {
+        height: 300px !important;
+        border-radius: 10px !important;
+        box-shadow: $shadow-1 !important;
+    }
+
+    .swiper-pagination-bullet {
+        width: 11px !important;
+        border-radius: 5px !important;
+    }
+
+    .swiper-pagination-bullet-active {
+        background-color: $blue-color !important;
+        width: 13px !important;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        color: #fff !important;
+        transform: scale(0.5) !important;
+        width: 50px !important;
+        height: 80px !important;
+        transition: 0.2s;
+        background: rgba(102, 102, 102, 0.364) !important;
+    }
+
+    .swiper-button-prev {
+        left: -13px;
+    }
+
+    .swiper-button-next {
+        right: -13px;
+    }
+}
