@@ -86,6 +86,15 @@ $shadow-1: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 .swiper {
     margin-left: auto;
     margin-right: auto;
+    cursor: pointer;
+
+    &:hover {
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            display: grid;
+        }
+    }
 }
 
 .mainSwiper {
@@ -113,6 +122,8 @@ $shadow-1: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         height: 80px !important;
         transition: 0.2s;
         background: rgba(102, 102, 102, 0.364) !important;
+        display: none;
+        place-items: center;
     }
 
     .swiper-button-prev {
