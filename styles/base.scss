@@ -101,7 +101,8 @@ $shadow-2: rgba(99, 99, 99, 0.1) 0px 0px 4px 0px;
 }
 
 .mainSwiper,
-.offers_swiper {
+.offers_swiper,
+.user_swiper {
     .swiper-slide img {
         height: 300px !important;
         border-radius: 10px !important;
@@ -223,5 +224,24 @@ $shadow-2: rgba(99, 99, 99, 0.1) 0px 0px 4px 0px;
 
     .swiper-pagination {
         display: none;
+    }
+}
+
+.user_swiper {
+    position: relative;
+    margin-left: 2rem;
+
+    .swiper-slide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 18px;
+        font-size: 22px;
+        font-weight: bold;
+        color: #fff;
+
+        img {
+            height: 240px !important;
+        }
     }
 }
