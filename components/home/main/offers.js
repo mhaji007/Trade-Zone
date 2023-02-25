@@ -17,7 +17,7 @@ export default function Offers() {
     <div className={styles.offers}>
       <div className={styles.offers__text}>
         <p>
-          use code <b>“MHAJJI”</b> for 30% off all products.
+          Use code <b>“MHAJI007”</b> for 30% off all products.
         </p>
         <Link href="/browse">Shop now</Link>
       </div>
