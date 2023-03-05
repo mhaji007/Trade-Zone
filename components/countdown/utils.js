@@ -1,8 +1,8 @@
 import dayjs from "dayjs";
 export function calcaulateDiff(timeInMs) {
-  const timestamDayjs = dayjs(timeInMs);
+  const timestampDayjs = dayjs(timeInMs);
   const nowDayjs = dayjs();
-  if (timestamDayjs.isBefore(nowDayjs)) {
+  if (timestampDayjs.isBefore(nowDayjs)) {
     return {
       seconds: "00",
       minutes: "00",
@@ -11,27 +11,27 @@ export function calcaulateDiff(timeInMs) {
     };
   }
   return {
-    seconds: getRemainingSeconds(nowDayjs, timestamDayjs),
-    minutes: getRemainingMinutes(nowDayjs, timestamDayjs),
-    hours: getRemainingHours(nowDayjs, timestamDayjs),
-    days: getRemainingDays(nowDayjs, timestamDayjs),
+    seconds: getRemainingSeconds(nowDayjs, timestampDayjs),
+    minutes: getRemainingMinutes(nowDayjs, timestampDayjs),
+    hours: getRemainingHours(nowDayjs, timestampDayjs),
+    days: getRemainingDays(nowDayjs, timestampDayjs),
   };
 }
 
-function getRemainingSeconds(nowDayjs, timestamDayjs) {
-  const seconds = timestamDayjs.diff(nowDayjs, "seconds") % 60;
+function getRemainingSeconds(nowDayjs, timestampDayjs) {
+  const seconds = timestampDayjs.diff(nowDayjs, "seconds") % 60;
   return padWithZeros(seconds, 2);
 }
-function getRemainingMinutes(nowDayjs, timestamDayjs) {
-  const minutes = timestamDayjs.diff(nowDayjs, "minutes") % 60;
+function getRemainingMinutes(nowDayjs, timestampDayjs) {
+  const minutes = timestampDayjs.diff(nowDayjs, "minutes") % 60;
   return padWithZeros(minutes, 2);
 }
-function getRemainingHours(nowDayjs, timestamDayjs) {
-  const hours = timestamDayjs.diff(nowDayjs, "hours") % 60;
+function getRemainingHours(nowDayjs, timestampDayjs) {
+  const hours = timestampDayjs.diff(nowDayjs, "hours") % 60;
   return padWithZeros(hours, 2);
 }
-function getRemainingDays(nowDayjs, timestamDayjs) {
-  const days = timestamDayjs.diff(nowDayjs, "days");
+function getRemainingDays(nowDayjs, timestampDayjs) {
+  const days = timestampDayjs.diff(nowDayjs, "days");
   return days.toString();
 }
 
